@@ -68,8 +68,8 @@
   <a href="https://www.linkedin.com/in/harman88157/">
     <img alt="LinkedIn" src="https://img.shields.io/badge/Harman Deep Singh-0077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>
-  <a href="mailto:harman@example.com">
-    <img alt="Email" src="https://img.shields.io/badge/Email-harman@example.com-EA4335.svg?style=for-the-badge&logo=gmail&logoColor=white" />
+  <a href="mailto:harman88157@gmail.com">
+    <img alt="Email" src="https://img.shields.io/badge/Email-harman88157@gmail.com-EA4335.svg?style=for-the-badge&logo=gmail&logoColor=white" />
   </a>
 </p>
 
