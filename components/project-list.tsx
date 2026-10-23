@@ -1,24 +1,11 @@
 "use client";
 
 import { useState } from "react";
-
-type Project = {
-  name: string;
-  desc: string;
-  btnLink: string;
-};
+import type { Project } from "../data/projects";
 
 type ProjectListProps = {
-  projects: Project[];
+  projects: readonly Project[];
 };
-
-function getTeaser(description: string) {
-  return description.match(/^.*?[.!?](?=\s|$)/)?.[0] ?? description;
-}
-
-function hasUsableProjectLink(href: string) {
-  return href.startsWith("https://") && !href.includes("example.com");
-}
 
 export function ProjectList({ projects }: ProjectListProps) {
   const [openProject, setOpenProject] = useState<number | null>(null);
@@ -30,15 +17,25 @@ export function ProjectList({ projects }: ProjectListProps) {
         const panelId = `project-details-${index}`;
 
         return (
-          <li className="project-row reveal" data-reveal key={`${project.name}-${index}`}>
+          <li
+            className="project-row reveal"
+            data-reveal
+            key={project.name}
+          >
             <div className="project-row-header">
               <span className="project-index" aria-hidden="true">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <div className="project-copy">
                 <h3>{project.name}</h3>
-                <p>{getTeaser(project.desc)}</p>
+                <p>{project.description}</p>
+                <ul className="project-technologies" aria-label="Technologies">
+                  {project.technologies.map((technology) => (
+                    <li key={technology}>{technology}</li>
+                  ))}
+                </ul>
               </div>
+              <span className="project-date">{project.date}</span>
               <button
                 aria-controls={panelId}
                 aria-expanded={isOpen}
@@ -53,25 +50,15 @@ export function ProjectList({ projects }: ProjectListProps) {
               </button>
             </div>
             <div className="project-panel" hidden={!isOpen} id={panelId}>
-              <p className="project-meta">Available project information</p>
-              <p>{project.desc}</p>
-              {hasUsableProjectLink(project.btnLink) ? (
-                <a
-                  className="project-panel-link"
-                  href={project.btnLink}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  {project.btnLink.includes("github.com")
-                    ? `View ${project.name} on GitHub`
-                    : `Visit the ${project.name} website`}
-                  <span aria-hidden="true">↗</span>
-                </a>
+              <p className="project-meta">Project highlights</p>
+              <ul>
+                {project.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+              {project.reportedOutcome ? (
+                <p className="project-outcome">{project.reportedOutcome}</p>
               ) : null}
-              <p className="project-documentation-note">
-                Architecture, technologies, and implementation notes are not
-                included in the available project record.
-              </p>
             </div>
           </li>
         );

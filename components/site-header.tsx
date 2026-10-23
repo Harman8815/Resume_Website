@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { profile } from "../data/profile";
 
 const navigation = [
   { href: "/#about", label: "About" },
@@ -15,8 +16,12 @@ export function SiteHeader() {
         Skip to content
       </a>
       <header className="site-header">
-        <Link className="wordmark" href="/" aria-label="Harman Deep Singh, home">
-          Harman Deep Singh
+        <Link
+          className="wordmark"
+          href="/"
+          aria-label={`${profile.name}, home`}
+        >
+          {profile.name}
         </Link>
         <nav className="primary-navigation" aria-label="Main navigation">
           {navigation.map((item) => (
