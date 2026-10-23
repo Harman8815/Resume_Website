@@ -32,22 +32,22 @@ npm run start     # Serve the production build
 
 ## Routes and content
 
-- `/` — profile, skills, coding profiles, projects, education, and contact details.
-- `/achievements` — coding profile snapshots and the certificate titles listed in
-  the legacy data.
+- `/` — profile, experience, education, skills, projects, achievements, and
+  additional resume details.
+- `/achievements` — competitive programming and community achievements.
 
-Project content is maintained in `data.json`. The achievements route reads
-`achievements/certificates.json`; add the referenced image assets to a `public`
-directory if certificate artwork is restored. Existing image files were not
-present in this repository checkout, so the app does not render broken image
-references.
+Resume content is maintained in typed TypeScript modules under `data/`:
 
-Project disclosures show the descriptions and usable links present in
-`data.json`. Add verified architecture, technology, testing, and outcome details
-to the project data before presenting them as case-study claims.
+- `profile.ts` — objective and contact links.
+- `experience.ts` and `education.ts` — work and academic history.
+- `skills.ts` — grouped technical skills.
+- `projects.ts` — project descriptions, dates, technologies, and outcomes.
+- `achievements.ts` — competitive programming and community activities.
+- `additional.ts` — languages, volunteering, interests, and soft skills.
 
-Profile details and social links are maintained in `app/page.tsx` and
-`app/achievements/page.tsx`. Update those values when profile information changes.
+The home page and `/achievements` route map these records into the interface.
+Update the corresponding data module when resume details change. Reported
+statistics are presented as supplied and are not live profile data.
 
 ## Production
 
