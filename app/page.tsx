@@ -1,6 +1,7 @@
 import Link from "next/link";
 import projectCatalog from "../data.json";
 import { SiteHeader } from "../components/site-header";
+import { ProjectList } from "../components/project-list";
 
 const skills = [
   {
@@ -55,21 +56,19 @@ const education = [
   { institution: "ICSE", qualification: "Class 10", dates: "2017–2018" },
 ];
 
-function hasUsableProjectLink(href: string) {
-  return href.startsWith("https://") && !href.includes("example.com");
-}
-
 export default function HomePage() {
   return (
     <>
       <SiteHeader />
-      <main id="top">
-        <section className="hero page-shell" aria-labelledby="intro-title">
-          <p className="eyebrow">Software development · India</p>
+      <main id="main-content" tabIndex={-1}>
+        <section className="hero page-shell" aria-labelledby="intro-title" id="top">
+          <p className="eyebrow">Software engineer · India</p>
           <h1 id="intro-title">
-            Building thoughtful
+            Building
             <br />
-            <span>software for the web.</span>
+            thoughtful software
+            <br />
+            <span>for the web.</span>
           </h1>
           <div className="hero-bottom">
             <p className="hero-summary">
@@ -83,7 +82,7 @@ export default function HomePage() {
           </div>
           <div className="hero-index" aria-hidden="true">
             <span>PORTFOLIO</span>
-            <span>01 — 05</span>
+            <span>01 — 06</span>
           </div>
         </section>
 
@@ -92,12 +91,12 @@ export default function HomePage() {
             <span className="section-number">01</span>
             <h2>About</h2>
           </div>
-          <div className="section-content about-content">
+          <div className="section-content about-content reveal" data-reveal>
             <p>
-              I have a strong background in Java and enjoy building practical
-              software. My work spans web development, desktop applications,
-              and competitive programming. I&apos;m continuing to grow my
-              full-stack skills and value clear, maintainable solutions.
+              My work spans Java software, web development, and competitive
+              programming. I&apos;m building on that foundation through
+              full-stack projects, with a focus on practical features and
+              maintainable code.
             </p>
             <a
               className="text-link"
@@ -115,7 +114,7 @@ export default function HomePage() {
             <span className="section-number">02</span>
             <h2>Skills</h2>
           </div>
-          <div className="section-content">
+          <div className="section-content reveal" data-reveal>
             <dl className="skill-list">
               {skills.map((group) => (
                 <div className="skill-row" key={group.category}>
@@ -132,11 +131,11 @@ export default function HomePage() {
             <span className="section-number">03</span>
             <h2>Coding profiles</h2>
           </div>
-          <div className="section-content">
+          <div className="section-content reveal" data-reveal>
             <ul className="profile-list">
               {profiles.map((profile) => (
                 <li className="profile-row" key={profile.name}>
-                  <div className="profile-name">
+                  <h3 className="profile-name">
                     {profile.href ? (
                       <a href={profile.href} target="_blank" rel="noreferrer">
                         {profile.name} <span aria-hidden="true">↗</span>
@@ -144,7 +143,7 @@ export default function HomePage() {
                     ) : (
                       <span>{profile.name}</span>
                     )}
-                  </div>
+                  </h3>
                   <p>{profile.details.join(" · ")}</p>
                 </li>
               ))}
@@ -164,36 +163,12 @@ export default function HomePage() {
             <span className="section-number">04</span>
             <h2>Projects</h2>
           </div>
-          <div className="section-content">
+          <div className="section-content reveal" data-reveal>
             <p className="section-intro">
-              A selection of projects from the portfolio catalogue.
+              Selected work from the existing project archive. Open a project
+              for its recorded summary and available link.
             </p>
-            <ul className="project-list">
-              {projectCatalog.projects.map((project, index) => (
-                <li className="project-row" key={`${project.name}-${index}`}>
-                  <span className="project-index">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div className="project-copy">
-                    <h3>{project.name}</h3>
-                    <p>{project.desc}</p>
-                  </div>
-                  {hasUsableProjectLink(project.btnLink) ? (
-                    <a
-                      className="project-link"
-                      href={project.btnLink}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`View ${project.name} project`}
-                    >
-                      View <span aria-hidden="true">↗</span>
-                    </a>
-                  ) : (
-                    <span className="project-link unavailable">Details</span>
-                  )}
-                </li>
-              ))}
-            </ul>
+            <ProjectList projects={projectCatalog.projects} />
           </div>
         </section>
 
@@ -202,7 +177,7 @@ export default function HomePage() {
             <span className="section-number">05</span>
             <h2>Education</h2>
           </div>
-          <div className="section-content">
+          <div className="section-content reveal" data-reveal>
             <ul className="education-list">
               {education.map((item) => (
                 <li className="education-row" key={item.institution}>
@@ -217,9 +192,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="contact-section page-shell" id="contact">
+        <section
+          className="contact-section page-shell reveal"
+          data-reveal
+          id="contact"
+        >
           <p className="eyebrow">Have a project in mind?</p>
-          <h2>Let&apos;s talk.</h2>
+          <h2>Have a problem worth solving?</h2>
           <a className="contact-email" href="mailto:harman88157@gmail.com">
             harman88157@gmail.com <span aria-hidden="true">↗</span>
           </a>
