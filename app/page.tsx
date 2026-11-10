@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { SiteHeader } from "../components/site-header";
+import { HeroAnimation } from "../components/hero-animation";
+import { ExperienceAnimation } from "../components/experience-animation";
+import { EducationAnimation } from "../components/education-animation";
+import { SkillsAnimation } from "../components/skills-animation";
 import { ProjectList } from "../components/project-list";
+import { AchievementsAnimation } from "../components/achievements-animation";
+import { ContactAnimation } from "../components/contact-animation";
+import { FooterAnimation } from "../components/footer-animation";
 import {
   interests,
   languages,
@@ -24,24 +31,34 @@ export default function HomePage() {
           aria-labelledby="intro-title"
           id="top"
         >
-          <p className="eyebrow">
-            {profile.headline} · {profile.location}
-          </p>
-          <h1 id="intro-title">
-            Building
-            <br />
-            thoughtful software
-            <br />
-            <span>for the web.</span>
-          </h1>
-          <div className="hero-bottom">
-            <p className="hero-summary">{profile.summary}</p>
-            <div className="hero-actions">
-              <a className="text-link" href={`mailto:${profile.email}`}>
-                Get in touch <span aria-hidden="true">↗</span>
-              </a>
+          <HeroAnimation>
+            <p className="eyebrow">
+              {profile.headline} · {profile.location}
+            </p>
+            <h1 id="intro-title" className="hero-mask">
+              <span className="hero-mask-line">
+                <span>Building</span>
+              </span>
+              <br />
+              <span className="hero-mask-line">
+                <span>thoughtful software</span>
+              </span>
+              <br />
+              <span className="hero-mask-line">
+                <span>
+                  <span style={{ color: "var(--accent)" }}>for the web.</span>
+                </span>
+              </span>
+            </h1>
+            <div className="hero-bottom">
+              <p className="hero-summary">{profile.summary}</p>
+              <div className="hero-actions">
+                <a className="text-link btn-vibrant vibrant-btn-1" href={`mailto:${profile.email}`}>
+                  Get in touch <span aria-hidden="true">↗</span>
+                </a>
+              </div>
             </div>
-          </div>
+          </HeroAnimation>
           <div className="hero-index full-bleed-rule" aria-hidden="true">
             <span>{profile.name}</span>
             <span>Resume · {new Date().getFullYear()}</span>
@@ -79,34 +96,37 @@ export default function HomePage() {
             <h2>Experience</h2>
           </div>
           <div className="section-content reveal" data-reveal>
-            <ul className="experience-list">
-              {experience.map((entry) => (
-                <li className="experience-entry" key={entry.organization}>
-                  <div className="experience-heading">
-                    <div>
-                      <h3>
-                        {entry.role}
-                        {entry.employmentType
-                          ? ` · ${entry.employmentType}`
-                          : ""}
-                      </h3>
-                      <p>
-                        {entry.organization}
-                      </p>
+            <ExperienceAnimation>
+              <ul className="experience-list">
+                {experience.map((entry) => (
+                  <li className="experience-entry" key={entry.organization}>
+                    <span className="experience-marker" aria-hidden="true" />
+                    <div className="experience-heading">
+                      <div>
+                        <h3>
+                          {entry.role}
+                          {entry.employmentType
+                            ? ` · ${entry.employmentType}`
+                            : ""}
+                        </h3>
+                        <p>
+                          {entry.organization}
+                        </p>
+                      </div>
+                      <div className="experience-meta">
+                        <span>{entry.dates}</span>
+                        <span>{entry.location}</span>
+                      </div>
                     </div>
-                    <div className="experience-meta">
-                      <span>{entry.dates}</span>
-                      <span>{entry.location}</span>
-                    </div>
-                  </div>
-                  <ul className="experience-highlights">
-                    {entry.highlights.map((highlight) => (
-                      <li key={highlight}>{highlight}</li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
+                    <ul className="experience-highlights">
+                      {entry.highlights.map((highlight) => (
+                        <li key={highlight}>{highlight}</li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </ExperienceAnimation>
           </div>
         </section>
 
@@ -119,23 +139,26 @@ export default function HomePage() {
             <h2>Education</h2>
           </div>
           <div className="section-content reveal" data-reveal>
-            <ul className="education-list">
-              {education.map((item) => (
-                <li className="education-row" key={item.institution}>
-                  <div>
-                    <h3>{item.institution}</h3>
-                    <p>{item.qualification}</p>
-                    <p>
-                      {item.affiliation} · {item.location}
-                    </p>
-                  </div>
-                  <div className="education-meta">
-                    <span>{item.dates}</span>
-                    <span>{item.result}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <EducationAnimation>
+              <ul className="education-list">
+                {education.map((item) => (
+                  <li className="education-row" key={item.institution}>
+                    <span className="education-marker" aria-hidden="true" />
+                    <div>
+                      <h3>{item.institution}</h3>
+                      <p>{item.qualification}</p>
+                      <p>
+                        {item.affiliation} · {item.location}
+                      </p>
+                    </div>
+                    <div className="education-meta">
+                      <span>{item.dates}</span>
+                      <span className="education-result">{item.result}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </EducationAnimation>
           </div>
         </section>
 
@@ -148,14 +171,14 @@ export default function HomePage() {
             <h2>Technical skills</h2>
           </div>
           <div className="section-content reveal" data-reveal>
-            <dl className="skill-list">
+            <SkillsAnimation>
               {skills.map((group) => (
                 <div className="skill-row" key={group.category}>
                   <dt>{group.category}</dt>
                   <dd>{group.items.join(" · ")}</dd>
                 </div>
               ))}
-            </dl>
+            </SkillsAnimation>
           </div>
         </section>
 
@@ -184,7 +207,7 @@ export default function HomePage() {
             <h2>Achievements</h2>
           </div>
           <div className="section-content reveal" data-reveal>
-            <ul className="profile-list">
+            <AchievementsAnimation>
               {codingAchievements.map((achievement) => (
                 <li className="profile-row" key={achievement.platform}>
                   <h3 className="profile-name">
@@ -198,9 +221,10 @@ export default function HomePage() {
                     </a>
                   </h3>
                   <p>{achievement.result}</p>
+                  <div className="achievement-progress" aria-hidden="true" />
                 </li>
               ))}
-            </ul>
+            </AchievementsAnimation>
             <div className="achievement-extras">
               <h3>Hackathons & open source</h3>
               <p>{communityActivities.join(" · ")}</p>
@@ -255,30 +279,15 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section
-          className="contact-section page-shell full-bleed-rule reveal"
-          data-reveal
-          id="contact"
-        >
-          <p className="eyebrow">Have a project in mind?</p>
-          <h2>Have a problem worth solving?</h2>
-          <a className="contact-email" href={`mailto:${profile.email}`}>
-            {profile.email} <span aria-hidden="true">↗</span>
-          </a>
-          <div className="contact-links">
-            <a href={profile.links.linkedIn} target="_blank" rel="noreferrer">
-              LinkedIn <span aria-hidden="true">↗</span>
-            </a>
-            <a href={profile.links.github} target="_blank" rel="noreferrer">
-              GitHub <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </section>
+        <ContactAnimation />
       </main>
-      <footer className="site-footer page-shell">
+      <FooterAnimation>
         <span>© {new Date().getFullYear()} {profile.name}</span>
         <Link href="/#top">Back to top ↑</Link>
-      </footer> </Suspense>
+        <a href="https://harmandevexp.netlify.app/" target="_blank" rel="noreferrer" className="portfolio-ref">
+          Portfolio <span aria-hidden="true">↗</span>
+        </a>
+      </FooterAnimation> </Suspense>
     </>
   );
 }

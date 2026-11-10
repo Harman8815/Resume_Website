@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ScrollReveal } from "../components/scroll-reveal";
+import { SmoothScroll } from "../components/smooth-scroll";
 import { profile } from "../data/profile";
 import "./globals.css";
 
@@ -30,8 +31,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
-      <ScrollReveal />
+      <body>
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
+        <ScrollReveal />
+      </body>
     </html>
   );
 }

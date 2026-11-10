@@ -2,11 +2,11 @@ import Link from "next/link";
 import { profile } from "../data/profile";
 
 const navigation = [
-  { href: "/#about", label: "About" },
-  { href: "/#skills", label: "Skills" },
-  { href: "/#achievements", label: "Achievements" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/#education", label: "Education" },
+  { href: "/#about", label: "About", vibrantClass: "vibrant-link-1" },
+  { href: "/#skills", label: "Skills", vibrantClass: "vibrant-link-2" },
+  { href: "/#achievements", label: "Achievements", vibrantClass: "vibrant-link-3" },
+  { href: "/#projects", label: "Projects", vibrantClass: "vibrant-link-4" },
+  { href: "/#education", label: "Education", vibrantClass: "vibrant-link-5" },
 ];
 
 export function SiteHeader() {
@@ -17,7 +17,7 @@ export function SiteHeader() {
       </a>
       <header className="site-header">
         <Link
-          className="wordmark"
+          className="wordmark vibrant-link-6"
           href="/"
           aria-label={`${profile.name}, home`}
         >
@@ -25,11 +25,14 @@ export function SiteHeader() {
         </Link>
         <nav className="primary-navigation" aria-label="Main navigation">
           {navigation.map((item) => (
-            <Link key={item.href} href={item.href}>
+            <Link key={item.href} href={item.href} className={item.vibrantClass}>
               {item.label}
             </Link>
           ))}
-          <Link className="navigation-contact" href="/#contact">
+          <Link
+            className="navigation-contact vibrant-btn-2"
+            href="/#contact"
+          >
             Contact <span aria-hidden="true">↗</span>
           </Link>
         </nav>
