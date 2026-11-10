@@ -10,7 +10,6 @@ gsap.registerPlugin(ScrollTrigger);
 export function ContactAnimation() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const emailRef = useRef<HTMLAnchorElement>(null);
   const dividerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -46,26 +45,6 @@ export function ContactAnimation() {
         );
       }
 
-      // Email underline drawing
-      if (emailRef.current) {
-        gsap.fromTo(
-          emailRef.current,
-          {
-            backgroundSize: "0% 2px",
-          },
-          {
-            backgroundSize: "100% 2px",
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 70%",
-              end: "bottom 30%",
-              scrub: 1,
-            },
-          },
-        );
-      }
 
       // Footer divider draws as footer enters view
       if (dividerRef.current) {
@@ -99,7 +78,6 @@ export function ContactAnimation() {
         <h2 ref={headingRef}>Have a problem worth solving?</h2>
       </div>
       <a
-        ref={emailRef}
         className="contact-email"
         href={`mailto:${profile.email}`}
       >
