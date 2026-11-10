@@ -12,11 +12,11 @@ import { education } from "../data/education";
 import { experience } from "../data/experience";
 import { profile } from "../data/profile";
 import { projects } from "../data/projects";
-import { skills } from "../data/skills";
-
+import { skills } from "../data/skills"; import { Suspense } from "react";
+import Loading from "./Loading";
 export default function HomePage() {
   return (
-    <>
+    <>    <Suspense fallback={<Loading />}>
       <SiteHeader />
       <main id="main-content" tabIndex={-1}>
         <section
@@ -39,9 +39,6 @@ export default function HomePage() {
             <div className="hero-actions">
               <a className="text-link" href={`mailto:${profile.email}`}>
                 Get in touch <span aria-hidden="true">↗</span>
-              </a>
-              <a className="text-link" href={`tel:${profile.phone}`}>
-                {profile.phone}
               </a>
             </div>
           </div>
@@ -268,9 +265,6 @@ export default function HomePage() {
           <a className="contact-email" href={`mailto:${profile.email}`}>
             {profile.email} <span aria-hidden="true">↗</span>
           </a>
-          <a className="contact-phone" href={`tel:${profile.phone}`}>
-            {profile.phone}
-          </a>
           <div className="contact-links">
             <a href={profile.links.linkedIn} target="_blank" rel="noreferrer">
               LinkedIn <span aria-hidden="true">↗</span>
@@ -284,7 +278,7 @@ export default function HomePage() {
       <footer className="site-footer page-shell">
         <span>© {new Date().getFullYear()} {profile.name}</span>
         <Link href="/#top">Back to top ↑</Link>
-      </footer>
+      </footer> </Suspense>
     </>
   );
 }

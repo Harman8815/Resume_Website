@@ -1,7 +1,7 @@
 export const profile = {
   name: "Harman Deep Singh",
   email: "harman88157@gmail.com",
-  phone: "+91-8815789701",
+  phone: "+91-XXXXXXXXXXX",
   location: "India",
   headline: "Full-stack software developer",
   summary:
