@@ -276,7 +276,7 @@ a:focus-visible {
   font-size: clamp(4.5rem, 12vw, 10rem);
   font-weight: 580;
   letter-spacing: -0.1em;
-  line-height: 0w;
+  line-height: 0.0;
 }
 
 .hero h1 span {
